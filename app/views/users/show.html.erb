@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Uname:</strong>
+  <%= @user.uname %>
+</p>
+
+<% @user.mutual_friends.select{ |mf| mf["count"] > 1 }.each do |mf| %>
+  <p><%= mf["user"].name %>: <%= mf["count"] %></p>
+<% end %>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+<%= link_to 'Refresh Counts', refresh_path(@user) %>
